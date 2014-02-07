@@ -34,14 +34,7 @@ public class BookIT extends BaseITCase {
 		
 		// construct the book and save it
 		
-		String firstName = "Frank";
-		String middleName = null; // we will leave middle name off here
-		String lastName = "Herbert";
-		Author author = new Author();
-		author.setFirstName(firstName);
-		author.setMiddleName(middleName);
-		author.setLastName(lastName);
-		
+		String author = "Frank Herbert";
 		String title = "Dune";
 		String category = "Science Fiction";
 		String isbn = "978-0441013593";
@@ -62,7 +55,6 @@ public class BookIT extends BaseITCase {
 		assertNull("Book id should be null.", book1.getId());
 		assertNull("Book objectId should be null.", book1.getObjectId());
 		assertNull("Book versionNumber should be null.", book1.getVersionNumber());
-		assertNull("Author id should be null.", author.getId());
 		
 		boService.save(book1);
 		
@@ -72,8 +64,6 @@ public class BookIT extends BaseITCase {
 		assertNotNull("Book should have an id now.", book1.getId());
 		assertNotNull("Book should have an object id now.", book1.getObjectId());
 		assertNotNull("Book should have a versionNumber now.", book1.getVersionNumber());
-		assertNotNull("Author should have an id now.", author.getId());
-		assertEquals("The authorId on the book should be the same as the Author's id.", author.getId(), book1.getAuthorId());
 		
 		LOG.info("book1.getId(): " + book1.getId());
 		LOG.info("book1.getObjectId(): " + book1.getObjectId());
@@ -82,7 +72,7 @@ public class BookIT extends BaseITCase {
 		// now let's query for the book by primary key
 		Book book2 = boService.findBySinglePrimaryKey(Book.class, book1.getId());
 		assertNotNull("Book with id should exist", book2);
-		assertEquals(author.getId(), book2.getAuthor().getId());
+		assertEquals(author, book2.getAuthor());
 		assertEquals(title, book2.getTitle());
 		assertEquals(category, book2.getCategory());
 		assertEquals(isbn, book2.getIsbn());
@@ -95,14 +85,7 @@ public class BookIT extends BaseITCase {
 	@Test
 	public void testFindMatching() throws Exception {
 		
-		String firstName = "Frank";
-		String middleName = null; // we will leave middle name off here
-		String lastName = "Herbert";
-		Author author = new Author();
-		author.setFirstName(firstName);
-		author.setMiddleName(middleName);
-		author.setLastName(lastName);
-
+		String author = "Frank Herbert";
 		String category = "Science Fiction";
 		
 		String title1 = "Dune";
@@ -139,7 +122,7 @@ public class BookIT extends BaseITCase {
 		boService.save(book2);
 		
 		Map<String, Object> queryMap = new HashMap<String, Object>();
-		queryMap.put("author.lastName", lastName);
+		queryMap.put("author", author);
 		Collection<Book> results = boService.findMatching(Book.class, queryMap);
 		
 		// verify that there should be two entries
@@ -165,14 +148,7 @@ public class BookIT extends BaseITCase {
 		
 		// construct the book and save it
 		
-		String firstName = "Frank";
-		String middleName = "";
-		String lastName = "Herbert";
-		Author author = new Author();
-		author.setFirstName(firstName);
-		author.setMiddleName(middleName);
-		author.setLastName(lastName);
-
+		String author = "Frank Herbert";
 		String title = "Dune";
 		String category = "Science Fiction";
 		String isbn = "978-0441013593";
@@ -202,13 +178,6 @@ public class BookIT extends BaseITCase {
 		Book book3 = boService.findBySinglePrimaryKey(Book.class, book2.getId());
 		assertNull("Book has been deleted so it should no longer exist", book3);
 		
-		// now, let's verify that the delete did not cascade to the Author
-		author = boService.findBySinglePrimaryKey(Author.class, author.getId());
-		assertNotNull("Author should not have been deleted.", author);
-		assertEquals(firstName, author.getFirstName());
-		assertEquals(middleName, author.getMiddleName());
-		assertEquals(lastName, author.getLastName());
-
 	}
 	
 }

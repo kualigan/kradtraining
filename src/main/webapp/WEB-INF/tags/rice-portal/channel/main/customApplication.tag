@@ -14,22 +14,19 @@
   ~ limitations under the License.
   --%>
 
+<%--
+Kuali Rice ArcheType Help
+
+This file contains custom application specific portal content.
+--%>
+
 <%@ include file="/rice-portal/jsp/sys/riceTldHeader.jsp" %>
 
-<channel:portalChannelTop channelTitle="Bookstore"/>
+<channel:portalChannelTop channelTitle="trnapp"/>
 <div class="body">
 
   <ul class="chan">
-      <li>
-        <portal:portalLink displayTitle="true"
-                           title="Author Lookup"
-                           url="${ConfigProperties.application.url}/kr-krad/lookup?methodToCall=start&dataObjectClassName=trnapp.bookstore.Author&showMaintenanceLinks=true&returnLocation=${ConfigProperties.application.url}/portal.do"/>
-      </li>
-      <li>
-        <portal:portalLink displayTitle="true"
-                           title="Book Lookup"
-                           url="${ConfigProperties.application.url}/kr-krad/lookup?methodToCall=start&dataObjectClassName=trnapp.bookstore.Book&showMaintenanceLinks=true&returnLocation=${ConfigProperties.application.url}/portal.do"/>        
-      </li>      
+      <li>insert custom content here</li>
   </ul>
 
 </div>

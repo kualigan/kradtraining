@@ -8,13 +8,11 @@ public class Book extends PersistableBusinessObjectBase {
 
 	private Long id;
 	private String title;
-	private Long authorId;
+	private String author;
 	private String category;
 	private String isbn;
 	private String publisher;
 	private java.sql.Date publicationDate;
-	
-	private Author author;
 	
 	public Long getId() {
 		return id;
@@ -30,11 +28,11 @@ public class Book extends PersistableBusinessObjectBase {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public Long getAuthorId() {
-		return authorId;
+	public String getAuthor() {
+		return author;
 	}
-	public void setAuthorId(Long authorId) {
-		this.authorId = authorId;
+	public void setAuthor(String author) {
+		this.author = author;
 	}
 	public String getCategory() {
 		return category;
@@ -59,12 +57,6 @@ public class Book extends PersistableBusinessObjectBase {
 	}
 	public void setPublicationDate(java.sql.Date publicationDate) {
 		this.publicationDate = publicationDate;
-	}
-	public Author getAuthor() {
-		return author;
-	}
-	public void setAuthor(Author author) {
-		this.author = author;
 	}
 	
 }

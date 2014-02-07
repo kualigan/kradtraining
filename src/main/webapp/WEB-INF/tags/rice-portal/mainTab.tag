@@ -26,7 +26,7 @@ To see other files that can be overriden, look at the org.kuali.rice:rice-web mo
 <%@ include file="/rice-portal/jsp/sys/riceTldHeader.jsp"%>
 
 <td class="content" valign="top">
-  <mainChannel:bookstoreApplication />
+  <mainChannel:customApplication />
 </td>
 <td class="content" valign="top">
 <mainChannel:workflow />
